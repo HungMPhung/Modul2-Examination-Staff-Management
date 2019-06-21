@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Staffs Management Application</title>
+    <style>
+        td{
+            padding: 5px;
+        }
+    </style>
+</head>
+<body style="text-align: center;">
+<h1>Danh sach nhan vien</h1>
+<div style="margin: 0 auto; display: inline-block;">
+    <button style="float: left; margin-right: 10px"><a th:href="@{/create-staff}">Them moi nhan vien</a></button>
+    <form style="float: left;">
+        <input name="findAllInOne" type="text" placeholder="Nhap noi dung tim kiem"/>
+        <input type="submit" value="Tim kiem"/>
+    </form>
+</div>
+<p></p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form>
+    <table border="1" align ="center">
+        <tr>
+            <td style="width: 30px">STT</td>
+            <td style="width: 100px">Ma nhan vien</td>
+            <td style="width: 150px">Nhom nhan vien</a></td>
+            <td style="width: 200px">Ho va ten</td>
+            <td style="width: 100px">Ngay sinh</td>
+            <td style="width: 50px">Gioi tinh</td>
+            <td style="width: 100px">So dien thoai</td>
+            <td style="width: 100px">So CMND</td>
+            <td style="width: 200px">Email</td>
+            <td style="width: 200px">Dia chi</td>
+            <td colspan="2">Chuc nang</td>
+        </tr>
+        <tr th:each="staff, stt: ${staff}">
+            <td th:text="${stt.count}"></td>
+            <td th:text="${staff.getStaffcode()}"></td>
+            <td th:text="${staff.getTeam().getName()}"></td>
+            <td th:text="${staff.getName()}"></td>
+            <td th:text="${staff.getBirthday()}"></td>
+            <td th:text="${staff.getGender()}"></td>
+            <td th:text="${staff.getPhone()}"></td>
+            <td th:text="${staff.getCmnd()}"></td>
+            <td th:text="${staff.getEmail()}"></td>
+            <td th:text="${staff.getAdress()}"></td>
+            <td style="width: 50px"><a th:href="@{/staff-edit/__${staff.id}__}">Sua</a></td>
+            <td style="width: 50px"><a th:href="@{/staff-delete/__${staff.id}__}" onclick="return confirm('Ban co muon xoa nhan vien nay?')">Xoa</a></td>
+        </tr>
+    </table>
+    <div style="margin-top: 20px">
+        <a th:href="@{'/'(page=${staff.number - 1})}" th:if="${staff.hasPrevious()}">Previous</a>
+        <span th:text="${staff.number + 1}"></span>/<span th:text="${staff.totalPages}"></span>
+        <a th:href="@{'/'(page=${staff.number + 1})}" th:if="${staff.hasNext()}">Next</a>
+    </div>
+</form>
+</body>
+</html>
