@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add new staff</title>
+    <title>Creat Staff</title>
 </head>
 <body style="text-align: center;">
-<h3>Add new staff</h3>
+<h3>Creat new Staff</h3>
 <p>
-    <a th:href="@{/}">Back to List Staffs</a>
+    <a th:href="@{/list}">Back to staff list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
@@ -15,7 +15,7 @@
 <form th:action="@{/create-staff}" th:object="${staff}" method="post">
     <table align="center">
         <tr>
-            <td style="text-align: left">Ma nhan vien</td>
+            <td style="text-align: left">Staff ID</td>
             <td>
                 <label>
                     <input type="text" style="width: 300px; padding: 5px;" th:field="*{staffcode}"/>
@@ -24,15 +24,7 @@
             <td th:if="${#fields.hasErrors('staffcode')}" th:errors="*{staffcode}">Name Error</td>
         </tr>
         <tr>
-            <td style="text-align: left">Chon nhom nhan vien</td>
-            <td style="float: left;">
-                <select th:field="*{team}" style="width: 150px">
-                    <option th:each="team : ${team}" th:value="${team.id}" th:text="${team.name}"></option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: left">Ho va ten</td>
+            <td style="text-align: left">Full Name</td>
             <td>
                 <label>
                     <input type="text" style="width: 300px; padding: 5px;" th:field="*{name}"/>
@@ -41,22 +33,22 @@
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         </tr>
         <tr>
-            <td style="text-align: left">Ngay sinh</td>
+            <td style="text-align: left">Birthday</td>
             <td>
                 <input type="date" style="width: 300px; padding: 5px;" th:field="*{birthday}"/>
             </td>
         </tr>
         <tr>
-            <td style="text-align: left">Gioi tinh</td>
+            <td style="text-align: left">Gender</td>
             <td>
                 <label>
-                    <input type="radio" name="gender" value="Nam" th:field="*{gender}"> Nam
-                    <input type="radio" name="gender" value="Nu" th:field="*{gender}"> Nu
+                    <input type="radio" name="gender" value="Male" th:field="*{gender}"> Male
+                    <input type="radio" name="gender" value="Female" th:field="*{gender}"> Female
                 </label>
             </td>
         </tr>
         <tr>
-            <td style="text-align: left">So dien thoai</td>
+            <td style="text-align: left">Phone Number</td>
             <td>
                 <label>
                     <input type="number" style="width: 300px; padding: 5px;" th:field="*{phone}"/>
@@ -65,7 +57,7 @@
             <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name Error</td>
         </tr>
         <tr>
-            <td style="text-align: left">So CMND</td>
+            <td style="text-align: left">ID code</td>
             <td>
                 <label>
                     <input type="number" style="width: 300px; padding: 5px;" th:field="*{cmnd}"/>
@@ -83,7 +75,7 @@
             <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
         </tr>
         <tr>
-            <td style="text-align: left">Dia chi</td>
+            <td style="text-align: left">Address</td>
             <td>
                 <label>
                     <input type="text" style="width: 300px; padding: 5px;" th:field="*{adress}"/>
@@ -92,7 +84,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Add"></td>
+            <td><input type="submit" value="ADD"></td>
         </tr>
     </table>
 </form>

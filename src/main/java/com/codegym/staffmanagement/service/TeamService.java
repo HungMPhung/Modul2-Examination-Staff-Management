@@ -5,5 +5,5 @@ import com.codegym.staffmanagement.model.Team;
 public interface TeamService {
     Iterable<Team> findAll();
 
-    Team findbyId(Long id);
+    Team findById(Long id);
 }
